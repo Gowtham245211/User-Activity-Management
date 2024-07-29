@@ -29,7 +29,7 @@ public class Post {
     private String content;
 
     @ManyToOne(
-        cascade = CascadeType.ALL, fetch = FetchType.LAZY
+        cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false
     )
     @JoinColumn(
             name = "user_id",

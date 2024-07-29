@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 @RestController
@@ -22,8 +24,16 @@ public class UserController {
     private UserServiceImpl userService;
 
     @GetMapping("/getUserByEmail")
-    public ResponseEntity<User> getUserByEmail(@RequestParam("email") String email) {
+    public ResponseEntity<User> getUserByEmail(HttpServletRequest request, @RequestParam("email") String email) {
 
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("userId".equals(cookie.getName())) {
+                    System.out.println(cookie.getValue());
+                }
+            }
+        }
         User user = userService.findByEmailEquals(email);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
