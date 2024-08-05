@@ -1,6 +1,7 @@
 package com.useractivitymanagement.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,13 +9,15 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "profile")
-public class Profile {
+@Schema(description = "profile entity")
+public class Profile implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

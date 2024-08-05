@@ -1,11 +1,13 @@
 package com.useractivitymanagement.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Data
@@ -13,7 +15,8 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "tag")
-public class Tag {
+@Schema(description = "tag entity")
+public class Tag  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

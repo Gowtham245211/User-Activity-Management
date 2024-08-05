@@ -9,6 +9,7 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.data.RepositoryItemWriter;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.LineMapper;
@@ -73,7 +74,6 @@ public class SpringBatchConfig {
         return writer;
     }
 
-
     @Bean
     public Step step() {
         return stepBuilderFactory.get("step-1").<Customer, Customer>chunk(10)
@@ -98,4 +98,16 @@ public class SpringBatchConfig {
         taskExecutor.setConcurrencyLimit(10);
         return taskExecutor;
     }
+}
+
+class CustomerProcessor implements ItemProcessor<Customer, Customer> {
+
+    @Override
+    public Customer process(Customer item) throws Exception {
+
+        // logic
+
+        return item;
+    }
+
 }

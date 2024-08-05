@@ -27,6 +27,4 @@ public class JobController {
 
         jobLauncher.run(job, jobParams);
     }
-
-
 }

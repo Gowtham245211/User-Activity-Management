@@ -1,11 +1,7 @@
 package com.useractivitymanagement.controller;
 
 import com.useractivitymanagement.entity.Comment;
-import com.useractivitymanagement.entity.Post;
-import com.useractivitymanagement.entity.User;
-import com.useractivitymanagement.exceptions.UserNotFoundException;
 import com.useractivitymanagement.repository.CommentRepo;
-import com.useractivitymanagement.repository.PostRepo;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

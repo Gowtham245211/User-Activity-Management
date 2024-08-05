@@ -6,6 +6,8 @@ import com.useractivitymanagement.entity.User;
 import com.useractivitymanagement.repository.CommentRepo;
 import com.useractivitymanagement.repository.UserRepo;
 import com.useractivitymanagement.service.UserServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +26,8 @@ public class UserController {
     private UserServiceImpl userService;
 
     @GetMapping("/getUserByEmail")
+    @Operation(summary = "Used to get user object through email")
+    @ApiResponse(responseCode = "200", description = "User obj received successfully")
     public ResponseEntity<User> getUserByEmail(HttpServletRequest request, @RequestParam("email") String email) {
 
         Cookie[] cookies = request.getCookies();
@@ -39,6 +43,8 @@ public class UserController {
     }
 
     @PutMapping("/updateUserByEmail")
+    @Operation(summary = "Used to update user object through email")
+    @ApiResponse(responseCode = "201", description = "User updated successfully")
     public ResponseEntity<String> updateUserByEmail(User user) {
 
         userService.updateUserByEmail(user.getEmail(), user.getUserName());

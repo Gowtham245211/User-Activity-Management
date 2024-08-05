@@ -1,7 +1,6 @@
 package com.useractivitymanagement.entity;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +8,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.List;
 
 @Data
@@ -16,7 +16,16 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "post")
-public class Post {
+@Schema(description = "post entity")
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(
+                name = "firstProcedure",
+                procedureName = "get_posts_byuserid",
+                parameters = {@StoredProcedureParameter(mode=ParameterMode.IN, name = "userId", type = String.class)}
+        )
+        // @NamedStoredProcedureQuery(name = "firstProcedure", procedureName = "get_posts_byuserid")
+})
+public class Post implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -48,7 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
             .authorizeRequests()
-                .antMatchers("/signUp/**","/login").permitAll()
+                .antMatchers("/signUp/**","/login","/swagger-ui/**", "/v3/api-docs/**").permitAll()
                 .antMatchers("/post/**","/user/**").hasRole("ADMIN")
                 .antMatchers("/tag/**").hasRole("USER")
                 // .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
